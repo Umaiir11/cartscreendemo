@@ -97,7 +97,7 @@ class MyHomePage extends StatelessWidget {
                       TextButton(
                         child: Text('Add'),
                         onPressed: () {
-                          cartController.addItem(items[index].Brand);
+                          cartController.addItem(items[index]);
                           Get.snackbar(
                               'Item added',
                               '${items[index]} has been added to your cart',
@@ -131,15 +131,16 @@ class MyHomePage extends StatelessWidget {
 }
 
 class VmCart extends GetxController {
-  var cartItems = RxList<String>();
+
+  RxList<ModTest> cartItems =RxList<ModTest>();
   var itemCount = RxInt(0);
 
-  void addItem(String item) {
+  void addItem(ModTest item) {
     cartItems.add(item);
     itemCount.value++;
   }
 
-  void removeItem(String item) {
+  void removeItem(ModTest item) {
     cartItems.remove(item);
     itemCount.value--;
   }
@@ -171,7 +172,7 @@ class VwCart extends StatelessWidget {
                         child: ListTile(
 
                           title: Text(
-                            cartController.cartItems[index],
+                            cartController.cartItems[index].Brand,
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
@@ -209,12 +210,6 @@ class VwCart extends StatelessWidget {
   }
 }
 
-class moduser{
-  String product="";
-  String company="";
-  int productid=0;
-
-}
 
 class ModTest {
   String Item = "";
